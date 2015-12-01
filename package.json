@@ -1,7 +1,6 @@
 {
   "name": "github-user-search",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +15,17 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-spec-reporter": "0.0.23",
     "phantomjs": "^1.9.19"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajeevHejib/git-user-serach.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RajeevHejib/git-user-serach/issues"
+  },
+  "homepage": "https://github.com/RajeevHejib/git-user-serach#readme",
+  "description": ""
 }
