@@ -14,7 +14,8 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-spec-reporter": "0.0.23",
-    "phantomjs": "^1.9.19"
+    "phantomjs": "^1.9.19",
+    "protractor": "^3.0.0"
   },
   "directories": {
     "test": "test"
@@ -27,5 +28,8 @@
     "url": "https://github.com/RajeevHejib/git-user-serach/issues"
   },
   "homepage": "https://github.com/RajeevHejib/git-user-serach#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "http-server": "^0.8.5"
+  }
 }

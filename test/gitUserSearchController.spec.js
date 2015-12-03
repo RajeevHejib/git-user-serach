@@ -27,7 +27,7 @@ describe('GitUserSearchController', function() {
     it('displays search results', function() {
       ctrl.searchTerm = 'hello';
       inject(function($q) {
-        searchSpy.query.and.returnValue($q.when({data:{items: items}}));
+        searchSpy.query.and.returnValue($q.when({data: {items: items}}));
       });
       ctrl.doSearch();
       scope.$apply();
@@ -37,7 +37,7 @@ describe('GitUserSearchController', function() {
 });
 
 
-// Onother way of stubbing...
+// Another way of stubbing...
 
 //
 // var _Search_ = {
