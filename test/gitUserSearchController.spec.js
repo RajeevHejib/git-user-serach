@@ -37,25 +37,6 @@ describe('GitUserSearchController', function() {
   });
 
 
-  describe('when searching for a user', function() {
-
-    it('displays search results', function() {
-
-      // ctrl.searchTerm = 'hello';
-      // ctrl.doSearch();
-
-      ctrl();
-
-      spyOn(searchSpy, 'testmethod');
-
-      expect(searchSpy.'testmethod').toHaveBeenCalled();
-
-      // expect(ctrl.searchResult.items).toEqual(items);
-
-    });
-  });
-});
-
 //
 // describe('GitUserSearchController', function() {
 //
