@@ -1,34 +1,19 @@
 describe('GitUserSearchController', function() {
 
   var ctrl;
-  // Onother way of stubbing...
+  var scope;
+  var searchSpy = jasmine.createSpyObj('searchSpy', ['query']);
 
-
-  var _Search_ = {
-    query: function(){
-      return { then: function(cb) { cb({data: {items: items}});}};
-    }
-  };
-
-
-  var searchSpy = jasmine.createSpy('searchSpy');
+  console.log(searchSpy);
 
   beforeEach(module('GitUserSearch'));
 
-  beforeEach(module({Search: _Search_}));
-
-
-  beforeEach(inject(function($rootScope, $controller){
+  beforeEach(inject(function($rootScope, $controller, $q){
     scope = $rootScope.$new();
-
-
-    ctrl = function() {
-      $controller('GitUserSearchController', {
-        $scope: scope,
-        Search: searchSpy
-      });
-    };
-
+    ctrl = $controller('GitUserSearchController', {
+      $scope: scope,
+      Search: searchSpy
+    });
   }));
 
   it('initialises with an empty search result and term', function() {
@@ -37,41 +22,28 @@ describe('GitUserSearchController', function() {
   });
 
 
+  describe('when searching for a user', function() {
+
+    it('displays search results', function() {
+      ctrl.searchTerm = 'hello';
+      inject(function($q) {
+        searchSpy.query.and.returnValue($q.when({data:{items: items}}));
+      });
+      ctrl.doSearch();
+      scope.$apply();
+      expect(ctrl.searchResult.items).toEqual(items);
+    });
+  });
+});
+
+
+// Onother way of stubbing...
+
 //
-// describe('GitUserSearchController', function() {
+// var _Search_ = {
+//   query: function(){
+//     return { then: function(cb) { cb({data: {items: items}});}};
+//   }
+// };
 //
-//   var ctrl;
-//   var scope;
-//   var searchSpy = jasmine.createSpyObj('searchSpy', ['query']);
-//
-//   console.log(searchSpy);
-//
-//   beforeEach(module('GitUserSearch'));
-//
-//   beforeEach(inject(function($rootScope, $controller, $q){
-//     scope = $rootScope.$new();
-//     ctrl = $controller('GitUserSearchController', {
-//       $scope: scope,
-//       Search: searchSpy
-//     });
-//   }));
-//
-//   it('initialises with an empty search result and term', function() {
-//     expect(ctrl.searchResult).toBeUndefined();
-//     expect(ctrl.searchTerm).toBeUndefined();
-//   });
-//
-//
-//   describe('when searching for a user', function() {
-//
-//     it('displays search results', function() {
-//       ctrl.searchTerm = 'hello';
-//       inject(function($q) {
-//         searchSpy.query.and.returnValue($q.when({data:{items: items}}));
-//       });
-//       ctrl.doSearch();
-//       scope.$apply();
-//       expect(ctrl.searchResult.items).toEqual(items);
-//     });
-//   });
-// });
+// beforeEach(module({Search: _Search_}));
