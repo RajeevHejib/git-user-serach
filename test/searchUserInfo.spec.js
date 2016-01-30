@@ -1,3 +1,0 @@
-describe('factory: Userinfo', function(){
-
-});

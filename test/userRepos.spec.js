@@ -1,31 +1,31 @@
-describe('factory: Search', function() {
+describe('factory: UserRepos', function() {
 
-  var search;
+  var userrepos;
 
   beforeEach(module('GitUserSearch'));
 
-  beforeEach(inject(function(Search) {
-    search = Search;
+  beforeEach(inject(function(UserRepos) {
+    userrepos = UserRepos;
   }));
 
   beforeEach(inject(function($httpBackend) {
     httpBackend = $httpBackend;
     httpBackend
-      .expectGET("https://api.github.com/search/users?q=hello")
+      .expectGET("https://api.github.com/search/users?q=hello/repos")
       .respond(
-        { items: items }
+        { repos: repos }
       );
     }
   ));
 
   it('responds to query', function() {
-    expect(search.query).toBeDefined();
+    expect(userrepos.query).toBeDefined();
   });
 
   it('returns search results', function() {
     search.query('hello')
       .then(function(response) {
-        expect(response.data.items).toEqual(items);
+        expect(response.data.repos).toEqual(repos);
       });
     httpBackend.flush();
   });
